@@ -1,0 +1,6 @@
+git
+pkg
+src
+
+*.pkg*
+

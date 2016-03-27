@@ -1,0 +1,20 @@
+# Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
+
+pkgname=ttf-input-mono-dejavu-style
+pkgver=1.0
+pkgrel=1
+pkgdesc="TrueType font Input, monospace edition."
+license=('')
+arch=(any)
+depends=(fontconfig xorg-font-utils)
+source=("http://is.gd/BYrkSu")
+install=$pkgname.install
+md5sums=("826cd51f6da4d4a350fef3b430ec8bfb")
+
+package() {
+    install -Dm644 Input_Fonts/Input/Input-Bold_\(InputMonoNarrow-Medium\).ttf "$pkgdir"/usr/share/fonts/Input/mono-narrow-bold.ttf
+    install -Dm644 Input_Fonts/Input/Input-BoldItalic_\(InputMonoNarrow-MediumItalic\).ttf "$pkgdir"/usr/share/fonts/Input/mono-narrow-bold-italic.ttf
+    install -Dm644 Input_Fonts/Input/Input-Italic_\(InputMonoNarrow-LightItalic\).ttf "$pkgdir"/usr/share/fonts/Input/mono-narrow-italic.ttf
+    install -Dm644 Input_Fonts/Input/Input-Regular_\(InputMonoNarrow-Light\).ttf "$pkgdir"/usr/share/fonts/Input/mono-narrow-regular.ttf
+}
+
