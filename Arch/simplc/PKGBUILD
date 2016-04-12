@@ -1,0 +1,59 @@
+# Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
+
+pkgname=simplc
+pkgver=2.1.1
+pkgrel=1
+pkgdesc='Multi-ISA "assembly debugger" that supports LC-3, Georgia Tech'\''s LC-2200 and brain*.'
+license=('BSD')
+arch=(any)
+depends=('readline' 'qt4')
+source=('http://iweb.dl.sourceforge.net/project/simplc/simplc-src/2.1.1b2/simp2.1.1b2.tar.gz' 'simpl.desktop')
+sha256sums=('51609bcb167010222a86facd2faae9c57e52925a469a20e48651a6aa8dc21cb7' '61de3abb1413008031d9921ebae686ee492aaeb6d06560350f3075eafcecb753')
+
+build() {
+    cd simpl-src
+
+    # Get build settings
+    TARGETS="simpl gt16qt simp lc3as gt16text gt16as"
+    MF_EXCEPTIONS='-fno-exceptions'
+    MOC='/usr/bin/moc-qt4'
+    TEMP_SRC=$(mktemp /tmp/simcfg-XXXXX.c)
+    TEMP_EXE=$(mktemp /tmp/simcfg-XXXXX)
+
+    cat > "$TEMP_SRC" << EOF
+int printf(const char *format, ...);
+#define DOTYPE(t, n) printf("#define SIZEOF_%s %d\n", #n, sizeof(t))
+int main(void) {
+    DOTYPE(int, INT);
+    DOTYPE(short, SHORT);
+    DOTYPE(long, LONG);
+    DOTYPE(void *, PTR);
+    return 0;
+}
+EOF
+
+    cc "$TEMP_SRC" -o "$TEMP_EXE"
+    "$TEMP_EXE" > config.h
+    rm -f "$TEMP_SRC" "$TEMP_EXE"
+
+    cat >> config.h << EOF
+#undef NO_READLINE
+#undef USE_KDE
+#define INSTALLPATH "$pkgdir/usr/lib/simpl"
+#define VERSION_STRING "$pkgver"
+EOF
+
+    # Create Makefile
+    build/build.sh makefile create "$TARGETS"
+
+    # Compile
+    make
+}
+
+package() {
+    cd simpl-src
+    install -D -m644 LICENSE            $pkgdir/usr/share/licenses/simplc/LICENSE
+    install -D -m644 simpl.desktop      $pkgdir/usr/share/applications/simpl.desktop
+    install -D -m644 hi16-app-simpl.png $pkgdir/usr/share/pixmaps/simpl.png
+}
+
