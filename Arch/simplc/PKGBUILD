@@ -5,7 +5,7 @@ pkgver=2.1.1
 pkgrel=1
 pkgdesc='Multi-ISA "assembly debugger" that supports LC-3, Georgia Tech'\''s LC-2200 and brain*.'
 license=('BSD')
-arch=(any)
+arch=('any')
 depends=('readline' 'qt4')
 source=('http://iweb.dl.sourceforge.net/project/simplc/simplc-src/2.1.1b2/simp2.1.1b2.tar.gz' 'simpl.desktop')
 sha256sums=('51609bcb167010222a86facd2faae9c57e52925a469a20e48651a6aa8dc21cb7' '61de3abb1413008031d9921ebae686ee492aaeb6d06560350f3075eafcecb753')
@@ -52,6 +52,8 @@ EOF
 
 package() {
     cd simpl-src
+
+    make install
     install -D -m644 LICENSE            $pkgdir/usr/share/licenses/simplc/LICENSE
     install -D -m644 simpl.desktop      $pkgdir/usr/share/applications/simpl.desktop
     install -D -m644 hi16-app-simpl.png $pkgdir/usr/share/pixmaps/simpl.png
