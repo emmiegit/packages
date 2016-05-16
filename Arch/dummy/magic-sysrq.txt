@@ -1,0 +1,48 @@
+Magic SysRq Keys
+To use, press Alt + SysRq + [Key]
+
+Supported Keys:
+0-9     Sets the console log level.
+b       Immediately reboot.
+c       Perform a system crash.
+d       Dispaly all currently held locks. (Check CONFIG_LOCKDEP)
+e       Send SIGTERM to all processes except init.
+f       Calls oom_kill, which kills a process to free memory.
+g       Provides emergency support for switching back to the kernel's framebuffer console, or the debugger 'kdb'.
+h       Output a brief help message.
+i       Send SIGKILL to all processes except init.
+j       Forcibly thaw filesystems forze by FIFREEZE ioctl.
+k       Kill all processes on the current virtual console. Also acts as a secure attention key.
+l       Shows a static backtrace for all CPUs.
+m       Output current memory information to the console.
+n       Reset the nice level of all "high-priority" and "real-time" tasks.
+o       Shut off the system.
+p       Output the current registers and flags to the console.
+q       Display all active high-resolution timers and clock sources.
+r       Switch the keyboard from raw mode to XLATE mode.
+s       Sync all mounted filesystems.
+t       Output a list of current tasks and their information to the console.
+u       Remount all mounted filesystems in read-only mode.
+v       Forcefully restores framebuffer console. On ARM processors, this key causes an ETM buffer dump.
+w       Display of all blocked (D state) tasks.
+x       Used by xmon interface on PPC/PowerPC platforms.
+y       Show global CPU registers.
+z       Dump the ftrace buffer.
+
+To safely reboot using the above keys, rememeber this acronym:
+Reboot Even If System Utterly Broken (REISUB)
+
+unRaw       Take control of the keyboard away from X.
+ tErminate  Send SIGTERM to all processes.
+ kIll       Send SIGKILL to all processes.
+  Sync      Flush data to disk.
+  Unmount   Remount all filesystems as read-only
+reBoot      Restart the computer.
+
+Warning:
+Magic SysRq will NOT work when:
+* init is successfully killed with a SEGV (segmentation fault)
+* After a kernel panic.
+* When there is any hardware or software failure where the kernel no longer runs correctly.
+* When the maci SysRq key "c" is used, which causes a kernel panic.
+

@@ -1,0 +1,34 @@
+# Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
+
+# A dummy package for testing things related to package management.
+
+pkgname=dummy
+pkgver=1
+pkgrel=1
+pkgdesc='Dummy package for testing.'
+arch=('any')
+url='https://example.com'
+license=('CC0')
+makedepends=()
+depends=()
+optdepends=()
+provides=('dummy')
+conflicts=('dummy')
+source=('lorem-ipsum.txt' 'magic-sysrq.txt')
+sha256sums=('353e307194cea50cd05be4f625fbfcf82a176be20be42825b4501d2a4d115a54' '0c601641ba42516bd70082f4aa665f7641469b629d6403e93474cccb6e6ccf4e')
+
+build() {
+    cd "$srcdir"
+    
+    return 0
+}
+
+package() {
+    install -D -m644 "$srcdir/lorem-ipsum.txt" "$pkgdir/usr/share/dummy/lorem-ipsum.txt"
+    install -D -m644 "$srcdir/magic-sysrq.txt" "$pkgdir/usr/share/dummy/magic-sysrq.txt"
+
+    mkdir "$pkgdir/usr/share/dummy/directory"
+    chown root:games "$pkgdir/usr/share/dummy/directory"
+    chmod 775 "$pkgdir/usr/share/dummy/directory"
+}
+
