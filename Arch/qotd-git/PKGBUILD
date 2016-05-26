@@ -2,7 +2,7 @@
 
 _pkgname=qotd
 pkgname=$_pkgname-git
-pkgver=0.4.0_10_gbbc6a7d.bbc6a7d
+pkgver=0.4.0_14_ge1a4dab.e1a4dab
 pkgrel=1
 pkgdesc="A simple QOTD (quote of the day) daemon."
 arch=('any')
