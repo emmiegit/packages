@@ -9,7 +9,7 @@ pkgdesc='A superchaged git/shell CLI with GitHub integration'
 arch=('any')
 url="https://github.com/whatyouhide/$_pkgname.git"
 license=('MIT')
-depends=('python' 'xonsh')
+depends=('python' 'xonsh' 'python-uritemplate')
 source=("git+https://github.com/donnemartin/$_pkgname.git")
 sha256sums=('SKIP')
 
