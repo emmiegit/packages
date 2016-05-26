@@ -1,0 +1,42 @@
+# Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
+
+# I *DO NOT* maintain the source repo.
+pkgname="gitsome"
+pkgver=1.f6a3c04
+pkgrel=1
+pkgdesc='A superchaged git/shell CLI with GitHub integration'
+arch=('any')
+url="https://github.com/whatyouhide/$pkgname.git"
+license=('MIT')
+depends=('xonsh'
+        'python'
+        'python-colorama'
+        'python-click'
+        'python-requests'
+        'python-pygments'
+        'python-pytz'
+        'python-six'
+        'python-docopt'
+        'python-ply')
+source=()
+sha256sums=()
+
+pkgver() {
+    cd "$srcdir/$pkgname"
+    printf '1.%s' "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "$srcdir/$pkgname"
+}
+
+package() {
+    cd "$srcdir/$pkgname"
+    #python setup.py install --prefix=/usr --root="$pkgdir" --optimize=1
+    pip install "$pkgname" --prefix=/usr --root="$pkgdir"
+
+    # Remove xonsh, it's a dependency and should already be installed.
+    rm "$pkgdir"/usr/bin/xonsh*
+    rm -r "$pkgdir"/usr/lib/python3.5/site-packages/xonsh
+}
+
