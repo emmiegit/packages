@@ -1,0 +1,5 @@
+#!/bin/sh
+
+iptables -A OUTPUT -m owner --gid-owner no-internet -j DROP
+ip6tables -A OUTPUT -m owner --gid-owner no-internet -j DROP
+

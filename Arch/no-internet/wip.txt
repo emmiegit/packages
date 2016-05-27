@@ -1,0 +1,3 @@
+http://serverfault.com/questions/550276/how-to-block-internet-access-to-certain-programs-on-linux
+http://ubuntuforums.org/showthread.php?t=1188099
+

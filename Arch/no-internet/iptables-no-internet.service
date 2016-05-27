@@ -1,0 +1,12 @@
+[Unit]
+Description=Disable network for 'no-internet' group.
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/iptables_disable_network
+
+[Install]
+WantedBy=multi-user.target
+

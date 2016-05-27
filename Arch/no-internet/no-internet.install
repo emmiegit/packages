@@ -1,0 +1,18 @@
+post_install() {
+    getent group no-internet > /dev/null || {
+        printf '>>> Creating no-internet group... '
+        groupadd --system no-internet
+        echo 'done.'
+    }
+
+    echo 'Remember to add yourself to the "no-internet" group.'
+}
+
+post_uninstall() {
+    getent group no-internet > /dev/null || {
+        printf '>>> Removing no-internet group... '
+        groupdel no-internet
+        echo 'done.'
+    }
+}
+

@@ -1,0 +1,31 @@
+# Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
+
+pkgname=no-internet
+pkgver=1
+pkgrel=1
+pkgdesc='Run programs without internet access.'
+arch=('any')
+url='https://gitlab.com/ammongit/packages/tree/master/Arch/no-internet'
+license=('MIT')
+makedepends=()
+depends=('sh' 'iptables')
+optdepends=()
+provides=('no-internet')
+conflicts=('no-internet')
+install='no-internet.install'
+source=('no-internet' 'iptables_disable_network' 'iptables-no-internet.service')
+sha256sums=('51dc69313add48a322580d9ad62e126c037d62a4a2d7e8a9248d06a4b851eefd'
+            'b2fab840cd6441c9bded5126431392c9017dbeaefba168e42985cd4a4a0404fc'
+            '4ab880d64f5cb09afdd5d039b826ccfd850b2369db9ec1f56bfdb1ed9ef3df5f')
+
+build() {
+    cd "$srcdir"
+    return 0
+}
+
+package() {
+    install -D -m755 "$srcdir/no-internet" "$pkgdir/usr/bin/no-internet"
+    install -D -m755 "$srcdir/iptables_disable_network" "$pkgdir/usr/bin/iptables_disable_network"
+    install -D -m644 "$srcdir/iptables-no-internet.service" "$pkgdir/usr/lib/systemd/system/iptables-no-internet.service"
+}
+
