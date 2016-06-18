@@ -2,14 +2,14 @@
 
 _pkgname=qotd
 pkgname=$_pkgname-git
-pkgver=0.4.0_16_gaf2136b.af2136b
+pkgver=0.4.0_35_g483137e.483137e
 pkgrel=1
-pkgdesc="A simple QOTD (quote of the day) daemon."
+pkgdesc="A simple RFC 865-compliant QOTD (quote of the day) daemon."
 arch=('any')
 url="https://gitlab.com/ammongit/$_pkgname"
 license=('GPL')
 depends=()
-makedepends=('git' 'gcc') # Also compatible with clang. Change CC in src/Makefile.
+makedepends=('git' 'gcc')
 optdepends=()
 provides=("$_pkgname")
 conflicts=("$_pkgname")
@@ -32,7 +32,8 @@ build() {
 
 package() {
     cd "$srcdir/$_pkgname"
-	make DESTDIR="$pkgdir" install
-    install -D -m644 LICENSE "$pkgdir/usr/share/licenses/qotd/LICENSE"
+	make ROOT="$pkgdir" SYSTEMD=1 install
+	install -D -m644 "doc/$_pkgname.pdf" "$pkgdir/usr/share/doc/$_pkgname/$_pkgname.pdf"
+    install -D -m644 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
 }
 
