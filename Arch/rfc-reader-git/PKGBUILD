@@ -2,11 +2,11 @@
 
 _pkgname=rfc_reader
 pkgname=rfc-reader-git
-pkgver=0.7.21cba5f
+pkgver=0.7.5679eb9
 pkgrel=1
 pkgdesc=""
 arch=('any')
-url=""
+url='https://github.com/monsieurh/rfc_reader'
 license=('GPLv3')
 groups=()
 depends=('python')
@@ -25,8 +25,8 @@ pkgver() {
 }
 
 build() {
-   cd "$srcdir/$_pkgname"
-   python setup.py build
+    cd "$srcdir/$_pkgname"
+    python setup.py build
 }
 
 package() {

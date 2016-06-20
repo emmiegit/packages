@@ -1,10 +1,10 @@
 # Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
 
 _pkgname=qotd
-pkgname=$_pkgname-git
-pkgver=0.4.0_35_g483137e.483137e
+pkgname="$_pkgname"
+pkgver=0.5.0
 pkgrel=1
-pkgdesc="A simple RFC 865-compliant QOTD (quote of the day) daemon. (git version)"
+pkgdesc="A simple RFC 865-compliant QOTD (quote of the day) daemon."
 arch=('any')
 url="https://gitlab.com/ammongit/$_pkgname"
 license=('GPL')
@@ -19,14 +19,13 @@ source=("git+https://gitlab.com/ammongit/$_pkgname.git")
 sha256sums=('SKIP')
 backup=('etc/qotd.conf')
 
-pkgver() {
-	cd "$srcdir/$_pkgname"
-    _ver="$(git describe --tags | sed 's/-/_/g')"
-    printf '%s.%s' "${_ver:1}" "$(git describe --always)"
-}
-
 build() {
     cd "$srcdir/$_pkgname"
+
+	# Go to the correct commit for this release
+	git reset --hard "$(git rev-parse "v$pkgver")"
+
+	# Compile sources
 	make release
 }
 
