@@ -1,0 +1,52 @@
+# Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
+
+_pkgname=discord-cli
+_url="https://github.com/Rivalo/${_pkgname}"
+_gourl="github.com/Rivalo/${_pkgname}"
+
+pkgname=${_pkgname}-git
+pkgver=0.3.0_alpha_7_g57f869f
+pkgrel=1
+pkgdesc='Minimalistic command-line interface for Discord'
+arch=('any')
+url="${url}"
+license=('GPL2')
+groups=()
+depends=()
+makedepends=('go' 'git')
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+source=()
+noextract=()
+sha256sums=()
+
+pkgver() {
+    cd "${srcdir}"
+    rm -rf "${_pkgname}"
+    git clone --bare "${_url}" "${_pkgname}"
+    cd "${_pkgname}"
+
+    git describe --tags | sed 's/-/_/g' | cut -c 2-
+}
+
+build() {
+    true
+}
+
+package() {
+    msg 'Running "go get"...'
+    mkdir -p "${pkgdir}/_go"
+    GOPATH="${pkgdir}/_go" go get -u "${_gourl}"
+
+    msg 'Installing files...'
+    install -D -m755 "${pkgdir}/_go/bin/discord-cli" "${pkgdir}/usr/bin/discord-cli"
+
+    msg 'Cleaning up $GOPATH...'
+    rm -rf "${pkgdir}/_go"
+}
+
+# vim:set ts=4 sw=4 et:
