@@ -14,7 +14,7 @@ depends=()
 optdepends=('curl: For piping beatmaps into oppai')
 provides=('oppai')
 conflicts=('oppai')
-source=("git+https://github.com/Francesco149/$_pkgname.git")
+source=("git+https://github.com/ammongit/$_pkgname.git")
 sha256sums=('SKIP')
 
 pkgver() {
