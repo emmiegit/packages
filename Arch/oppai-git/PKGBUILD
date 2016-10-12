@@ -2,7 +2,7 @@
 
 _pkgname=oppai
 pkgname="$_pkgname-git"
-pkgver=.6.2_1_g2ec7b4b.2ec7b4b
+pkgver=0.6.2_3_gf237c7d
 pkgrel=1
 pkgdesc='osu! pp advanced inspector (oppai) is pp calculator for osu! beatmaps'
 arch=('any')
@@ -19,8 +19,7 @@ sha256sums=('SKIP')
 
 pkgver() {
 	cd "$srcdir/$_pkgname"
-	local _ver="$(git describe --tags | sed 's/-/_/g')"
-	printf '%s.%s' "${_ver:1}" "$(git describe --always)"
+	git describe --tags --always | sed 's/-/_/g'
 }
 
 build() {
