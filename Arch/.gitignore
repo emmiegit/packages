@@ -4,6 +4,7 @@ pkg
 src
 
 *.pkg*
+*.tar*
 
 .SRCINFO
 
