@@ -28,7 +28,7 @@ pkgver() {
 
 build() {
     cd "$srcdir/$_pkgname"
-    cat "$_sourcefile" | rot13 > "$_filename"
+    rot13 < "$_sourcefile" > "$_filename"
     strfile -x "$_filename" "$_filename.dat"
 }
 
