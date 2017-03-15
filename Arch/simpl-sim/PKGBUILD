@@ -9,7 +9,6 @@ url='https://sourceforge.net/projects/simplc/files/?source=navbar'
 license=('GPL' 'BSD')
 depends=('readline' 'ncurses' 'qt3')
 makedepends=('gcc')
-optdepends=()
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 options=()
@@ -21,7 +20,7 @@ sha256sums=('51609bcb167010222a86facd2faae9c57e52925a469a20e48651a6aa8dc21cb7'
 build() {
 	cd "$srcdir/simpl-src"
 
-	# Set configuration
+	msg 'Creating configuration...'
 	cat > .options <<- EOF
 	READLINE="-lreadline"
 	CURSES="-lncurses"
