@@ -10,20 +10,21 @@ license=('GPL')
 depends=()
 makedepends=()
 optdepends=()
-provides=("$_pkgname")
-conflicts=("$_pkgname")
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
 options=()
 source('http://tenet.dl.sourceforge.net/project/simplc/simplc-src/2.1.1b2/simp2.1.1b2.tar.gz')
 sha256sums=('SKIP')
 
 build() {
-    cd "$srcdir/$_pkgname"
-    ./config.sh
-    make
+	cd "$srcdir/${pkgname%-git}"
+	./config.sh
+	make
 }
 
 package() {
-    cd "$srcdir/$_pkgname"
-    make install 
+	cd "$srcdir/${pkgname%-git}"
+	make install
 }
 
+# vim: set sw=4 ts=4 noet:

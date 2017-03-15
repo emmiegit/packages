@@ -1,10 +1,9 @@
 # Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
 
-_pkgname=rfc_reader
 pkgname=rfc-reader-git
 pkgver=0.7.5679eb9
 pkgrel=1
-pkgdesc=""
+pkgdesc='The CLI RFC reader.'
 arch=('any')
 url='https://github.com/monsieurh/rfc_reader'
 license=('GPLv3')
@@ -19,18 +18,18 @@ source=("git+https://github.com/monsieurh/$_pkgname")
 md5sums=('SKIP')
 
 pkgver() {
-    cd "$srcdir/$_pkgname"
-    local _version='0.7'
-    printf '%s.%s' "${_version}" "$(git describe --always)"
+    cd "$srcdir/${pkgname%-git}"
+    local _ver='0.7'
+    printf '%s.%s' "${_ver}" "$(git describe --always)"
 }
 
 build() {
-    cd "$srcdir/$_pkgname"
+    cd "$srcdir/${pkgname%-git}"
     python setup.py build
 }
 
 package() {
-    cd "$srcdir/$_pkgname"
+    cd "$srcdir/${pkgname%-git}"
     python setup.py install --root="$pkgdir" --optimize=1
 }
 
