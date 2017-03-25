@@ -4,12 +4,12 @@ pkgname=osu-lazer-git
 pkgver=v2017.324.0_54_g796218cb
 pkgrel=1
 pkgdesc='Freeware rhythm video game - lazer development version'
-arch=('any')
+arch=('x86_64' 'i686')
 url='http://osu.ppy.sh'
 license=('MIT')
-makedepends=('git'
-			 'mono'
-			 'nuget')
+makedepends=('mono'
+			 'nuget'
+			 'git')
 depends=()
 optdepends=()
 provides=('osu-lazer')
@@ -21,7 +21,7 @@ sha256sums=('SKIP'
 
 pkgver() {
 	cd "$srcdir/osu"
-	git describe --always --tags | sed 's/-/_/g'
+	git describe --always --tags | sed 's/-/_/g' | cut -c 2-
 }
 
 build() {
@@ -47,6 +47,13 @@ package() {
 	cd "$srcdir/osu/osu.Desktop/bin/Debug"
 	mkdir -p "$pkgdir/usr/lib/${pkgname%-git}"
 	install -m755 *.exe *.dll "$pkgdir/usr/lib/${pkgname%-git}"
+
+	if [[ $CARCH == x86_64 ]]; then
+		cd "$srcdir/osu/osu.Desktop/bin/Debug/x64"
+	elif [[ $CARCH == i686 ]]; then
+		cd "$srcdir/osu/osu.Desktop/bin/Debug/x86"
+	fi
+	install -m644 *.dll "$pkgdir/usr/lib/${pkgname%-git}"
 }
 
 # vim: set sw=4 ts=4 noet:
