@@ -1,7 +1,7 @@
 # Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
 
 pkgname=osu-lazer-git
-pkgver=v2017.324.0_54_g796218cb
+pkgver=2017.324.0_54_g796218cb
 pkgrel=1
 pkgdesc='Freeware rhythm video game - lazer development version'
 arch=('x86_64' 'i686')
