@@ -1,0 +1,52 @@
+# Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
+
+pkgname=osu-lazer-git
+pkgver=v2017.324.0_54_g796218cb
+pkgrel=1
+pkgdesc='Freeware rhythm video game - lazer development version'
+arch=('any')
+url='http://osu.ppy.sh'
+license=('MIT')
+makedepends=('git'
+			 'mono'
+			 'nuget')
+depends=()
+optdepends=()
+provides=('osu-lazer')
+conflicts=('osu-lazer')
+source=("git+https://github.com/ppy/osu.git"
+		'osu-launcher')
+sha256sums=('SKIP'
+			'c499dbff1d9a8f382e7b3cf4a95b58b9f02fb98e66e50cddb5d7d6c8a5223d2d')
+
+pkgver() {
+	cd "$srcdir/osu"
+	git describe --always --tags | sed 's/-/_/g'
+}
+
+build() {
+	cd "$srcdir/osu"
+
+	# Initialize submodules
+	git submodule init
+	git submodule update --recursive
+
+	# Download dependencies
+	nuget restore
+
+	# Build
+	export MONO_IOMAP='case'
+	xbuild || xbuild
+}
+
+package() {
+	cd "$srcdir"
+	mkdir -p "$pkgdir/usr/bin"
+	install -m755 'osu-launcher' "$pkgdir/usr/bin/osu"
+
+	cd "$srcdir/osu/osu.Desktop/bin/Debug"
+	mkdir -p "$pkgdir/usr/lib/${pkgname%-git}"
+	install -m755 *.exe *.dll "$pkgdir/usr/lib/${pkgname%-git}"
+}
+
+# vim: set sw=4 ts=4 noet:
