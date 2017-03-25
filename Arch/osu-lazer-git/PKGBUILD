@@ -42,7 +42,7 @@ build() {
 package() {
 	cd "$srcdir"
 	mkdir -p "$pkgdir/usr/bin"
-	install -m755 'osu-launcher' "$pkgdir/usr/bin/osu"
+	install -m755 'osu-launcher' "$pkgdir/usr/bin/osu-lazer"
 
 	cd "$srcdir/osu/osu.Desktop/bin/Debug"
 	mkdir -p "$pkgdir/usr/lib/${pkgname%-git}"
