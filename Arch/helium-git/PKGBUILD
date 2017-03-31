@@ -1,0 +1,53 @@
+# Maintainer: Ammon Smith <ammon@levyx.com>
+
+pkgname=helium-git
+pkgver=2.10.1_88e8b41
+pkgrel=1
+pkgdesc='A fast key/value store for solid state and flash devices.'
+arch=('any')
+url='http://levyx.com'
+license=('custom')
+options=('staticlibs' '!strip')
+makedepends=('git')
+depends=()
+provides=('helium')
+conflicts=('helium')
+source=("git+https://github.com/levyx/${pkgname%-git}")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+
+	readonly local major="$(grep HE_VERSION_MAJOR src/he.h | awk '{print $3}')"
+	readonly local minor="$(grep HE_VERSION_MINOR src/he.h | awk '{print $3}')"
+	readonly local patch="$(grep HE_VERSION_PATCH src/he.h | awk '{print $3}')"
+	readonly local githash="$(git rev-parse --short HEAD)"
+	printf '%s.%s.%s_%s' "$major" "$minor" "$patch" "$githash"
+}
+
+build() {
+	cd "$srcdir/${pkgname%-git}"
+
+	make -C src all
+	make -C man all pdf
+
+	strip src/helium
+}
+
+package() {
+	cd "$srcdir/${pkgname%-git}"
+
+	install -D -m755 'src/helium' "$pkgdir/usr/bin/helium"
+	install -D -m755 'src/libhe.so' "$pkgdir/usr/lib/libhe.so"
+	install -D -m644 'src/libhe.a' "$pkgdir/usr/lib/libhe.a"
+	install -D -m644 'src/he.h' "$pkgdir/usr/include/he.h"
+	install -D -m644 'man/helium.pdf' "$pkgdir/usr/share/doc/${pkgname%-git}/helium.pdf"
+
+	rm -f man/*.h.3
+	for section in 0 1 3 7; do
+		mkdir -p "$pkgdir/usr/share/man/man$section"
+		mv man/*"$section.gz" "$pkgdir/usr/share/man/man$section"
+	done
+}
+
+# vim: set ts=4 sw=4 noet:
