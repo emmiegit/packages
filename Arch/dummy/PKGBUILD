@@ -14,7 +14,8 @@ optdepends=()
 provides=('dummy')
 conflicts=('dummy')
 source=('lorem-ipsum.txt' 'magic-sysrq.txt')
-sha256sums=('353e307194cea50cd05be4f625fbfcf82a176be20be42825b4501d2a4d115a54' '0c601641ba42516bd70082f4aa665f7641469b629d6403e93474cccb6e6ccf4e')
+sha256sums=('353e307194cea50cd05be4f625fbfcf82a176be20be42825b4501d2a4d115a54' 
+            '0c601641ba42516bd70082f4aa665f7641469b629d6403e93474cccb6e6ccf4e')
 
 build() {
 	cd "$srcdir"
