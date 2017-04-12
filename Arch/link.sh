@@ -1,10 +1,6 @@
 #!/bin/bash
-set -eu
-files=('PKGBUILD'
-       'fortune-mod-houseofcards.install'
-       'houseofcards.txt')
-
 source PKGBUILD
+set -eu
 
 for file in "${source[@]}" PKGBUILD *.install; do
 	if [[ -f "$file" ]]; then
