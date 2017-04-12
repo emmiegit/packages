@@ -8,3 +8,5 @@ for file in "${source[@]}" PKGBUILD *.install; do
 	fi
 done
 
+(cd aur; mksrcinfo)
+
