@@ -35,10 +35,6 @@ case "$CARCH" in
 	i686)
 		_arch=x86
 		;;
-	*)
-		echo >&2 "No support for $CARCH architecture."
-		exit 1
-		;;
 esac
 
 pkgver() {
