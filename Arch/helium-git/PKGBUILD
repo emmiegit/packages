@@ -1,7 +1,7 @@
 # Maintainer: Ammon Smith <ammon@levyx.com>
 
 pkgname=helium-git
-pkgver=2.11.0_734346a
+pkgver=2.12.0_998c44f
 pkgrel=1
 pkgdesc='A fast key/value store for solid state and flash devices.'
 arch=('any')
