@@ -2,7 +2,7 @@
 # Contributor: Nicole Fontenot <nfontenot27@gmail.com>
 
 pkgname=osu-lazer-git
-pkgver=2017.928.0_5_g04f3802cc
+pkgver=2017.928.0_28_g4930dfe87
 pkgrel=1
 pkgdesc='Freeware rhythm video game - lazer development version'
 arch=('x86_64' 'i686')
