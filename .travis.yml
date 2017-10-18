@@ -1,0 +1,22 @@
+sudo: required
+
+arch:
+  repos:
+    - papyros=http://dash.papyros.io/repos/$repo/$arch
+  packages:
+    - papyros-shell
+  script:
+    - ./build_script.sh
+
+before_script:
+  - 'curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash'
+
+script:
+  - cd Arch/oppai-git; makepkg
+  - cd Arch/osu-lazer-git; makepkg
+  - cd Arch/qotd-git; makepkg
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
