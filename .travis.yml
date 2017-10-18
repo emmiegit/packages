@@ -4,7 +4,7 @@ arch:
   repos:
     - papyros=http://dash.papyros.io/repos/$repo/$arch
   packages:
-    - papyros-shell
+    - git
   script:
     - ./build_script.sh
 
