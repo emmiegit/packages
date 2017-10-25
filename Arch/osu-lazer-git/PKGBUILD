@@ -8,7 +8,7 @@ pkgdesc='Freeware rhythm video game - lazer development version'
 arch=('x86_64' 'i686')
 url='https://osu.ppy.sh'
 license=('MIT')
-makedepends=('nuget'
+makedepends=('nuget4'
              'git')
 depends=('ffmpeg'
          'libgl'
