@@ -2,7 +2,7 @@
 # Contributor: Nicole Fontenot <nfontenot27@gmail.com>
 
 pkgname=osu-lazer-git
-pkgver=2017.1014.0_27_g9eb220af8
+pkgver=2017.1025.0_2_gf91a82027
 pkgrel=1
 pkgdesc='Freeware rhythm video game - lazer development version'
 arch=('x86_64' 'i686')
@@ -52,7 +52,7 @@ build() {
 	git submodule update --recursive
 
 	# Download dependencies
-	nuget restore -configfile NuGet.config || true
+	nuget restore -configfile "$srcdir/NuGet.config" || true
 	nuget restore
 
 	# Build
