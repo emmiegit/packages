@@ -8,5 +8,5 @@ for file in "${source[@]}" PKGBUILD *.install; do
 	fi
 done
 
-(cd aur; mksrcinfo)
+(cd aur; makepkg --printsrcinfo > .SRCINFO)
 
