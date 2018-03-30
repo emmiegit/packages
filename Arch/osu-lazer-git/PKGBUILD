@@ -49,12 +49,12 @@ pkgver() {
 }
 
 prepare() {
-	cd "${srcdir}/osu"
+	cd "$srcdir/osu"
 
 	# Prepare submodules
 	git submodule init
-	git config submodule.osu-framework.url "${srcdir}/osu-framework"
-	git config submodule.osu-resources.url "${srcdir}/osu-resources"
+	git config submodule.osu-framework.url "$srcdir/osu-framework"
+	git config submodule.osu-resources.url "$srcdir/osu-resources"
 	git submodule update --recursive
 
 	# Download dependencies
@@ -67,7 +67,7 @@ build() {
 
 	# Symlink netstandard for xbuild
 	mkdir -p "osu.Game/bin/Release"
-	ln -s "/lib/mono/4.5/Facades/netstandard.dll" "osu.Game/bin/Release"
+	ln -s "/usr/lib/mono/4.5/Facades/netstandard.dll" "osu.Game/bin/Release"
 
 	# Build
 	export MONO_IOMAP='case'
