@@ -5,7 +5,7 @@
 # Contributor: "donaldtrump" [AUR]
 
 pkgname=osu-lazer-git
-pkgver=2019.216.0_167_g89a05c086
+pkgver=2019.302.0_14_g35ffccc2a
 pkgrel=1
 pkgdesc='Freeware rhythm video game - lazer development version'
 arch=('x86_64')
@@ -16,6 +16,7 @@ makedepends=('mono'
 depends=('dotnet-sdk'
          'ffmpeg'
          'libbass'
+         'libbass_fx'
          'libgl'
          'shared-mime-info')
 optdepends=()
