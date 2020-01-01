@@ -92,7 +92,7 @@ package() {
 	ln -s LICENSE "$pkgdir/usr/share/licenses/${pkgname%-git}/LICENCE"
 
 	# Copy binaries
-	cd "$srcdir/osu/osu.Desktop/bin/Release/netcoreapp3.0"
+	cd "$srcdir/osu/osu.Desktop/bin/Release/netcoreapp"*
 	mkdir -p "$pkgdir/usr/lib/${pkgname%-git}"
 	for file in *.json *.dll *.pdb runtimes/linux-x64/native/*.so; do
 		install -m755 "$file" "$pkgdir/usr/lib/${pkgname%-git}/${file##*/}"
