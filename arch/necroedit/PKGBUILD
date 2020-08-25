@@ -9,7 +9,6 @@ url='https://github.com/Marukyu/NecroEdit'
 license=('MIT')
 makedepends=('gcc' 'cmake')
 depends=()
-optdepends=()
 provides=('necroedit')
 conflicts=('necroedit')
 source=('https://github.com/Marukyu/NecroEdit/archive/v0.11.tar.gz'
