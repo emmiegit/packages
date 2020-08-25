@@ -14,7 +14,7 @@ conflicts=('necroedit')
 source=('https://github.com/Marukyu/NecroEdit/archive/v0.11.tar.gz'
         'necroedit')
 sha256sums=('5dcdcc45da43b4a2da1576e38095781f6d774c008c908b8f34927a1e33e0054d'
-            '79d6257c6fdaa4487b59ab4b2d264354aeb76e5a8de67b3ba1a2e0fa6f33eedb')
+            '275de615fb6b4494972f5c11de44bd199f546a6d7d9271cd5c3b42e871d3c04e')
 
 build() {
 	cd "$srcdir/NecroEdit-$pkgver"

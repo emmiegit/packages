@@ -3,4 +3,5 @@ set -eu
 
 exec /usr/lib/necroedit/NecroEdit \
 	-g "$(cat /usr/share/necroedit/game-directory.txt)" \
-	-r "/usr/share/necroedit"
+	-r "/usr/share/necroedit" \
+	"$@"
