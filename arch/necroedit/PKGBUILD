@@ -18,7 +18,7 @@ sha256sums=('5dcdcc45da43b4a2da1576e38095781f6d774c008c908b8f34927a1e33e0054d'
             '79d6257c6fdaa4487b59ab4b2d264354aeb76e5a8de67b3ba1a2e0fa6f33eedb')
 
 build() {
-	cd "$srcdir"
+	cd "$srcdir/NecroEdit-$pkgver"
 
 	cmake .
 	make
@@ -26,9 +26,9 @@ build() {
 
 package() {
 	install -D -m755 "$srcdir/necroedit" "$pkgdir/usr/bin/necroedit"
-	install -D -m755 "$srcdir/bin/NecroEdit" "$pkgdir/usr/lib/necroedit/NecroEdit"
+	install -D -m755 "$srcdir/NecroEdit-$pkgver/bin/NecroEdit" "$pkgdir/usr/lib/necroedit/NecroEdit"
 
-	for file in "$srcdir"/res/*; do
+	for file in "$srcdir/NecroEdit-$pkgver/res/"*; do
 		install -D -m644 "$file" "$pkgdir/usr/share/necroedit/${file##*/}"
 	done
 
