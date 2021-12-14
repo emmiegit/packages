@@ -1,7 +1,7 @@
 # Maintainer: Ammon Smith <ammon.i.smith@gmail.com>
 
 pkgname="iget-git"
-pkgver=1.3.6.f57e14a
+pkgver=1.3.6_1_g0a0a8a2.0a0a8a2
 pkgrel=1
 pkgdesc='A no-hassle command-line image downloader.'
 arch=('any')
@@ -13,12 +13,12 @@ optdepends=()
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 options=()
-source=("git+https://gitlab.com/ammongit/${pkgname%-git}.git"
-        'iget-wrapper.sh')
-sha256sums=('SKIP'
-            '184c33840db24b394e76d143534a9f80b8a355c31f0635287286e0791704c1ee')
+source=('iget-wrapper.sh')
+sha256sums=('184c33840db24b394e76d143534a9f80b8a355c31f0635287286e0791704c1ee')
 
 pkgver() {
+	cp -a "$HOME/git/${pkgname%-git}" "$srcdir"
+
 	cd "$srcdir/${pkgname%-git}"
 	local _ver="$(git describe --tags | sed 's/-/_/g')"
 	printf '%s.%s' "${_ver:1}" "$(git describe --always)"
